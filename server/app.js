@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 // Allow requests from your Vercel frontend
-const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost:5173'];
+const allowedOrigins = ["https://my-portfolio-mocha-omega-22.vercel.app/", 'http://localhost:5173'];
 
 app.use(cors({
   origin: allowedOrigins,
