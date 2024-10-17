@@ -20,7 +20,7 @@ app.use(express.json());
 //url encoded payload means that the data will be sent in the URL itself.
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-import cors from 'cors';
+
 
 // Allow requests from your Vercel frontend
 const allowedOrigins = ['https://your-vercel-app.vercel.app'];
