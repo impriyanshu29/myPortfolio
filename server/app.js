@@ -30,14 +30,14 @@ app.use("/api/certificate",certificateRoute);
 app.use("/api/experience",experienceRoute);
 app.use("/api/message",messageRoute);
 
-// Serve static files from the React app
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '/client/dist')));
+// // Serve static files from the React app
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, '/client/dist')));
 
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client','dist', 'index.html')); // Adjust the path
-});
+// // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client','dist', 'index.html')); // Adjust the path
+// });
 
 app.use((err,req, res, next) => {
     console.error(err.stack);
