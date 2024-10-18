@@ -24,7 +24,7 @@ export function Work() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/project/getProject`);
+        const res = await fetch(`${apiUrl}/api/project/getProject.`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
