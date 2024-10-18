@@ -20,12 +20,13 @@ app.use(express.json());
 //url encoded payload means that the data will be sent in the URL itself.
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-
+// Specify your frontend domains (Vercel and custom domain)
 const allowedOrigins = [
-  'https://my-portfolio-a489fnd0e-priyanshu-tiwaris-projects.vercel.app',
-  'https://my-portfolio-amber-seven-44.vercel.app',
-  'https://www.priyanshutiwari.me'
+  'https://my-portfolio-8onw1f64y-priyanshu-tiwaris-projects.vercel.app',
+  'https://myportfolio-1-a574.onrender.com',
+  'https://www.priyanshutiwari.me',
+  'http://localhost:5173',
+  
 ];
 
 const corsOptions = {
@@ -36,8 +37,10 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  credentials: true,  // Enable cookies and other credentials if needed
 };
 
+// Enable CORS for the allowed origins
 app.use(cors(corsOptions));
 
 
