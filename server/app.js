@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 // Allow requests from your Vercel frontend
-const allowedOrigins = ["https://my-portfolio-amber-seven-44.vercel.app/", 'http://localhost:5173'];
+const allowedOrigins = [`https://my-portfolio-7mjq5s9bo-priyanshu-tiwaris-projects.vercel.app/`, `https://my-portfolio-amber-seven-44.vercel.app/`, `www.priyanshutiwari.me`];
 
 app.use(cors({
   origin: allowedOrigins,

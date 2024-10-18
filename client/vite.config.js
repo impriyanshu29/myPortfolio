@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: "https://myportfolio-1-a574.onrender.com" || "http://localhost:5000",
+        target: `https://myportfolio-1-a574.onrender.com`,
         changeOrigin: true, // Optional, helps with CORS
         secure: false,
       },
