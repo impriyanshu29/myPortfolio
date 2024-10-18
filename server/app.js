@@ -22,14 +22,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
-// Allow requests from your Vercel frontend
-const allowedOrigins = [`https://my-portfolio-7mjq5s9bo-priyanshu-tiwaris-projects.vercel.app/`, `https://my-portfolio-amber-seven-44.vercel.app/`, `www.priyanshutiwari.me`];
+const allowedOrigins = [
+  'https://my-portfolio-a489fnd0e-priyanshu-tiwaris-projects.vercel.app',
+  'https://my-portfolio-amber-seven-44.vercel.app',
+  'https://www.priyanshutiwari.me'
+];
 
-app.use(cors({
-  origin: allowedOrigins,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.use('/api/auth',authRoute);

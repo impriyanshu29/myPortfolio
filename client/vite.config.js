@@ -10,7 +10,7 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
-    } : undefined,  // No proxy in production
+    } : undefined, // No proxy in production
   },
   plugins: [react()],
   build: {
