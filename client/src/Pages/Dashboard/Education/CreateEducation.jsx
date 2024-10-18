@@ -22,7 +22,8 @@ function CreateEducation() {
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
-  const [data  , setData] = useState([{}]); 
+  const [data  , setData] = useState([{}]);
+  const apiUrl = import.meta.env.VITE_API_URL; 
   const handleChanges = (e) => {
     setInfoData({ ...infoData, [e.target.id]: e.target.value });
   };
@@ -42,7 +43,7 @@ function CreateEducation() {
         formData.append("educationImage", file);
       });
   
-      const res = await fetch(`/api/edu/uploadImage`, {
+      const res = await fetch(`${apiUrl}/api/edu/uploadImage`, {
         method: "POST",
         body: formData,
       });
@@ -82,7 +83,7 @@ console.log(imageData)
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/edu/createEducation`, {
+      const res = await fetch(`${apiUrl}/api/edu/createEducation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

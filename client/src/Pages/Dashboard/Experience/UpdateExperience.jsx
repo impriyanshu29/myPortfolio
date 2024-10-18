@@ -17,6 +17,7 @@ function UpdateExperience() {
     experience: "",
     description: "",
   });
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,7 @@ function UpdateExperience() {
     const fetchEducation = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/experience/getExperience?_id=${id}`);
+        const res = await fetch(`${apiUrl}/api/experience/getExperience?_id=${id}`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -71,7 +72,7 @@ function UpdateExperience() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/experience/updateExperience?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/experience/updateExperience?_id=${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -35,6 +35,7 @@ import { IoLogoFirebase } from "react-icons/io5";
 import { FaLinux } from "react-icons/fa";
 import { FaGitAlt } from "react-icons/fa";
 
+
 const items = [
   {
     icon: <LuFileCode2 className="text-green-600 font-bold h-6 w-7" />,
@@ -102,6 +103,7 @@ function Home() {
     words: ["Full Stack Developer", "MERN Developer", "Football Player"],
     loop: {},
   });
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [error, setError] = useState("");
   const [updateMessage, setUpdateMessage] = useState("");
   const [socialData, setSocialData] = useState([]);
@@ -151,7 +153,7 @@ function Home() {
   useEffect(() => {
     const fetchSocialMedia = async () => {
       try {
-        const res = await fetch(`/api/intro/getSocial`);
+        const res = await fetch(`${apiUrl}/api/intro/getSocial`);
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.message);
@@ -221,7 +223,7 @@ function Home() {
   useEffect(() => {
     const getTotal = async () => {
       try {
-        const res = await fetch("/api/intro/getTotal");
+        const res = await fetch(`${apiUrl}/api/intro/getTotal`);
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.message);
@@ -246,7 +248,7 @@ function Home() {
   useEffect(() => {
     const getResumePdf = async () => {
       try {
-        const res = await fetch("/api/intro/resumePdf");
+        const res = await fetch(`${apiUrl}/api/intro/resumePdf`);
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.message);

@@ -14,7 +14,7 @@ function CreateCertificate() {
     description: "",
     jobs: "",
   });
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [imageFile, setImageFile] = useState([]);
   const [imageData, setImageData] = useState([]);
 
@@ -43,7 +43,7 @@ function CreateCertificate() {
         formData.append("certificateImage", file);
       });
   
-      const res = await fetch(`/api/certificate/uploadImage`, {
+      const res = await fetch(`${apiUrl}/api/certificate/uploadImage`, {
         method: "POST",
         body: formData,
       });
@@ -80,7 +80,7 @@ function CreateCertificate() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/certificate/createCertificate`, {
+      const res = await fetch(`${apiUrl}/api/certificate/createCertificate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

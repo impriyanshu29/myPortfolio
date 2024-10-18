@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 
 
 function UpdateProject() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const location = useLocation();
   const navigate = useNavigate();
   const [infoData, setInfoData] = useState({});
@@ -27,7 +28,7 @@ function UpdateProject() {
     const fetchProjects = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/project/getProject?_id=${id}`);
+        const res = await fetch(`${apiUrl}/api/project/getProject?_id=${id}`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -71,7 +72,7 @@ function UpdateProject() {
         formData.append("images", file);
       });
 
-      const res = await fetch(`/api/project/uploadImage`, {
+      const res = await fetch(`${apiUrl}/api/project/uploadImage`, {
         method: "POST",
         body: formData,
       });
@@ -100,7 +101,7 @@ function UpdateProject() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/project/updateProject?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/project/updateProject?_id=${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,7 +130,7 @@ function UpdateProject() {
 
   const handleDelete = async (public_id) => {
     try {
-      const res = await fetch(`/api/project/deleteImage?_id=${id}&&public_id=${public_id}`, {
+      const res = await fetch(`${apiUrl}/api/project/deleteImage?_id=${id}&&public_id=${public_id}`, {
         method: "DELETE",
       });
       const data = await res.json();

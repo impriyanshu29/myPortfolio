@@ -4,11 +4,11 @@ function Messages() {
     const [messages, setMessages] = useState([]);
     const [error ,setError] = useState(" ");
     const [successMessage,setSuccessMessage] = useState(" ")
-     
+    const apiUrl = import.meta.env.VITE_API_URL;
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const res = await fetch("/api/message/getMessage");
+                const res = await fetch(`${apiUrl}/api/message/getMessage`);
                 const data = await res.json();
                 if (!res.ok) {
                     throw new Error(data.message);
@@ -26,7 +26,7 @@ function Messages() {
     const handleDelete = async(_id) =>{
         try {
 
-            const res = await fetch(`/api/message/deleteMessage?_id=${_id}`,{
+            const res = await fetch(`${apiUrl}/api/message/deleteMessage?_id=${_id}`,{
                 method : "DELETE"
 
             })

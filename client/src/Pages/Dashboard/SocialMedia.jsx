@@ -6,6 +6,7 @@ function SocialMedia() {
     name: "",
     url: "",
   });
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [socialData, setSocialData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +24,7 @@ function SocialMedia() {
       setError("");
       setLoading(true);
 
-      const res = await fetch("/api/intro/addSocials?", {
+      const res = await fetch(`${apiUrl}/api/intro/addSocials?`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +65,7 @@ function SocialMedia() {
     useEffect(() => {
     const fetchSocials = async () => {
         try {
-            const res = await fetch(`/api/intro/getSocial   `)
+            const res = await fetch(`${apiUrl}/api/intro/getSocial   `)
                 ;
           
             const data = await res.json();
@@ -97,7 +98,7 @@ function SocialMedia() {
     try {
       setError("");
       setLoading(true);
-      const res = await fetch(`/api/intro/deleteSocial?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/intro/deleteSocial?_id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

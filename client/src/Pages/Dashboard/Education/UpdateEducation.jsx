@@ -29,7 +29,7 @@ function UpdateEducation() {
     const fetchEducation = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/edu/getEducation?_id=${id}`);
+        const res = await fetch(`${apiUrl}/api/edu/getEducation?_id=${id}`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -75,7 +75,7 @@ function UpdateEducation() {
         formData.append("educationImage", file);
       });
 
-      const res = await fetch(`/api/edu/uploadImage`, {
+      const res = await fetch(`${apiUrl}/api/edu/uploadImage`, {
         method: "POST",
         body: formData,
       });
@@ -104,7 +104,7 @@ function UpdateEducation() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/edu/updateEducation?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/edu/updateEducation?_id=${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -130,11 +130,11 @@ function UpdateEducation() {
       setTimeout(() => setError(""), 5000);
     }
   };
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const handleDelete = async (public_id) => {
     try {
       const res = await fetch(
-        `/api/edu/deleteImage?_id=${id}&&public_id=${public_id}`,
+        `${apiUrl}/api/edu/deleteImage?_id=${id}&&public_id=${public_id}`,
         {
           method: "DELETE",
         }

@@ -30,6 +30,7 @@ function CreateProject() {
   const handleChanges = (e) => {
     setInfoData({ ...infoData, [e.target.id]: e.target.value });
   };
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleImageChange = (e) => {
     setImageFile(Array.from(e.target.files)); 
@@ -86,7 +87,7 @@ console.log(imageData)
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/project/createProject`, {
+      const res = await fetch(`${apiUrl}/api/project/createProject`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

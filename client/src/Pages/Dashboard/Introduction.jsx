@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Introduction() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [infoData, setInfoData] = useState({});
 
@@ -28,7 +29,7 @@ function Introduction() {
     try {
       setError("");
       setLoading(true);
-      const res = await fetch("/api/intro/createIntro", {
+      const res = await fetch(`${apiUrl}/api/intro/createIntro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +71,7 @@ function Introduction() {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const res = await fetch(`/api/intro/getIntro`);
+        const res = await fetch(`${apiUrl}/api/intro/getIntro`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -111,7 +112,7 @@ function Introduction() {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/intro/uploadProfileImage", {
+      const res = await fetch(`${apiUrl}/api/intro/uploadProfileImage`, {
         method: "POST",
         body: formData,
       });
@@ -139,7 +140,7 @@ function Introduction() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`/api/intro/deleteProfileImage?publicId=${id}`, {
+      const res = await fetch(`${apiUrl}/api/intro/deleteProfileImage?publicId=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -179,7 +180,7 @@ function Introduction() {
     pdfData.append("resumePdf", resumeFile);
     try {
       setPdfLoading(true);
-      const res = await fetch("/api/intro/uploadResumePdf", {
+      const res = await fetch(`${apiUrl}/api/intro/uploadResumePdf`, {
         method: "POST",
         body: pdfData,
       });
@@ -209,7 +210,7 @@ function Introduction() {
 
   const handlePDFDelete = async (id) => {
     try {
-      const res = await fetch(`/api/intro/deleteResumePdf?publicId=${id}`, {
+      const res = await fetch(`${apiUrl}/api/intro/deleteResumePdf?publicId=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

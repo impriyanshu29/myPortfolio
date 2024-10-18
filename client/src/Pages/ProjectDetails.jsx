@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Carousel } from "flowbite-react";
 
+
 function ProjectDetails() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const slug = urlParams.get("slug");
   const [project, setProject] = useState({});
   const [error, setError] = useState(null);
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`/api/project/getProject?slug=${slug}`);
+        const res = await fetch(`${apiUrl}/api/project/getProject?slug=${slug}`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);

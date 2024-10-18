@@ -9,11 +9,11 @@ export function ExperienceList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [update, setUpdate] = useState();
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("/api/experience/getExperience");
+        const res = await fetch(`${apiUrl}/api/experience/getExperience`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -43,7 +43,7 @@ export function ExperienceList() {
 
     const handleDeleteEducation = (id) => async () => {
     try {
-      const res = await fetch(`/api/experience/deleteExperience?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/experience/deleteExperience?_id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

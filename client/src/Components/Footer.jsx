@@ -11,10 +11,11 @@ export function Footer() {
   const [error, setError] = useState(" ");
   const [updateMessage, setUpdateMessage] = useState(" ");
   const [socialData, setSocialData] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchSocialMedia = async () => {
       try {
-        const res = await fetch(`/api/intro/getSocial`);
+        const res = await fetch(`${apiUrl}/api/intro/getSocial`);
         const data = await res.json();
       
         if (!res.ok) {

@@ -21,6 +21,7 @@ function UpdateCertificate() {
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const urlParams = new URLSearchParams(location.search);
   const id = urlParams.get("_id");
@@ -29,7 +30,7 @@ function UpdateCertificate() {
     const fetchEducation = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/certificate/getCertificates?_id=${id}`);
+        const res = await fetch(`${apiUrl}/api/certificate/getCertificates?_id=${id}`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);
@@ -75,7 +76,7 @@ function UpdateCertificate() {
         formData.append("certificateImage", file);
       });
 
-      const res = await fetch(`/api/certificate/uploadImage`, {
+      const res = await fetch(`${apiUrl}/api/certificate/uploadImage`, {
         method: "POST",
         body: formData,
       });
@@ -104,7 +105,7 @@ function UpdateCertificate() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/certificate/updateCertificate?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/certificate/updateCertificate?_id=${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +137,7 @@ function UpdateCertificate() {
   const handleDelete = async (public_id) => {
     try {
       const res = await fetch(
-        `/api/certificate/deleteImage?_id=${id}&&public_id=${public_id}`,
+        `${apiUrl}/api/certificate/deleteImage?_id=${id}&&public_id=${public_id}`,
         {
           method: "DELETE",
         }

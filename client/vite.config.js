@@ -4,13 +4,13 @@ import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
   server: {
-    proxy: {
+    proxy: process.env.NODE_ENV === 'development' ? {
       '/api': {
-        target: `https://myportfolio-1-a574.onrender.com`,
-        changeOrigin: true, // Optional, helps with CORS
-        secure: false,
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
-    },
+    } : undefined,  // No proxy in production
   },
   plugins: [react()],
   build: {

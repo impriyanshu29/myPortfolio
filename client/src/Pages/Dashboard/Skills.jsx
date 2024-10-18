@@ -7,6 +7,7 @@ function Skill() {
     level: "",
     category: " ",
   });
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [skillData, setSkillData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,7 +27,7 @@ function Skill() {
       setError("");
       setLoading(true);
 
-      const res = await fetch("/api/intro/addSkills", {
+      const res = await fetch(`${apiUrl}/api/intro/addSkills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +65,7 @@ function Skill() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await fetch(`/api/intro/getSkill`);
+        const res = await fetch(`${apiUrl}/api/intro/getSkill`);
         console.log(res);
         const data = await res.json();
         if (!res.ok) {
@@ -92,7 +93,7 @@ function Skill() {
     try {
       setError("");
       setLoading(true);
-      const res = await fetch(`/api/intro/deleteSkill?_id=${id}`, {
+      const res = await fetch(`${apiUrl}/api/intro/deleteSkill?_id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

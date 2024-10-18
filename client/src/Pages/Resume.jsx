@@ -13,12 +13,12 @@ function Resume() {
   const [error, setError] = useState("");
   const [showMore, setShowMore] = useState(false);
   const [showAboutMore, setShowAboutMore] = useState(false);
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   // Fetching INfo from the server
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const res = await fetch("/api/intro/getIntro", {
+        const res = await fetch(`${apiUrl}/api/intro/getIntro`, {
           method: "GET",
         });
         const data = await res.json();
@@ -99,7 +99,7 @@ function Resume() {
   useEffect(() => {
     const fetchEducationInfo = async () => {
       try {
-        const res = await fetch("/api/edu/getEducation", {
+        const res = await fetch(`${apiUrl}/api/edu/getEducation`, {
           method: "GET",
         });
         const data = await res.json();
@@ -127,7 +127,7 @@ function Resume() {
   useEffect(() => {
     const fetchExperienceInfo = async () => {
       try {
-        const res = await fetch("/api/experience/getExperience", {
+        const res = await fetch(`${apiUrl}/api/experience/getExperience`, {
           method: "GET",
         });
         const data = await res.json();
@@ -155,7 +155,7 @@ function Resume() {
   useEffect(() => {
     const fetchCertificationInfo = async () => {
       try {
-        const res = await fetch("/api/certificate/getCertificates", {
+        const res = await fetch(`${apiUrl}/api/certificate/getCertificates`, {
           method: "GET",
         });
         const data = await res.json();
@@ -183,7 +183,7 @@ function Resume() {
   useEffect(() => {
     const fetchProjectInfo = async () => {
       try {
-        const res = await fetch("/api/project/getProject?limit=2", {
+        const res = await fetch(`${apiUrl}/api/project/getProject?limit=2`, {
           method: "GET",
         });
         const data = await res.json();

@@ -19,7 +19,7 @@ function CreateExperience() {
   });
 
 
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   // Messages ->
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ function CreateExperience() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/experience/createExperience`, {
+      const res = await fetch(`${apiUrl}/api/experience/createExperience`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

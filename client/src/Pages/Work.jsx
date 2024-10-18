@@ -19,12 +19,12 @@ export function Work() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("/api/project/getProject");
+        const res = await fetch(`${apiUrl}/api/project/getProject`);
         const data = await res.json();
         if (!res.ok) {
           setError(data.message);

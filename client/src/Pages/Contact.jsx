@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect,useCallback } from 'react';
 function Contact() {
 
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [updateMessage1, setUpdateMessage1] = useState("");
   const [loading ,setLoading] = useState(false)
@@ -28,7 +29,7 @@ function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/message/createMessage", {
+      const res = await fetch(`${apiUrl}/api/message/createMessage`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
